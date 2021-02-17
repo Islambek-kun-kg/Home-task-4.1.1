@@ -17,8 +17,10 @@ import android.view.ViewGroup;
 import com.example.lesson_411.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class GalleryUseFragment extends Fragment {
-    private ShapeableImageView shapeableImageView;
+    private CircleImageView shapeableImageView;
     private ActivityResultLauncher<String> content;
 
     @Override
@@ -31,7 +33,7 @@ public class GalleryUseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         shapeableImageView = view.findViewById(R.id.imgView1);
         shapeableImageView.setOnClickListener(v -> {
-            GalleryUseFragment.this.openGallery();
+            GalleryUseFragment.this.content.launch("image/*");
         });
         content = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
@@ -39,9 +41,5 @@ public class GalleryUseFragment extends Fragment {
                 shapeableImageView.setImageURI(result);
             }
         });
-    }
-
-    public void openGallery() {
-        content.launch("image/*");
     }
 }
