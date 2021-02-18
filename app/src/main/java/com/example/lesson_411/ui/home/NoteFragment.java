@@ -43,23 +43,15 @@ public class NoteFragment extends Fragment {
             }
         });
         btnSave.setOnClickListener(v1 -> {
-            if (checkBtn) saveAfterEditing();
-            else save();
+            if (checkBtn) saveMet(KEY_EDT_TXT, KEY_FOR_EDT_TXT);
+            else saveMet(KEY_TXT, KEY_FOR_TXT);
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigateUp();
         });
     }
 
-    public void save() {
-        String text = edtTxt.getText().toString();
+    public void saveMet(String key1, String key2) {
         Bundle bundle = new Bundle();
-        bundle.putString(KEY_TXT, text);
-        getParentFragmentManager().setFragmentResult(KEY_FOR_TXT, bundle);
-    }
-
-    public void saveAfterEditing() {
-        String txt = edtTxt.getText().toString();
-        Bundle bundle = new Bundle();
-        bundle.putString(KEY_EDT_TXT, txt);
-        getParentFragmentManager().setFragmentResult(KEY_FOR_EDT_TXT, bundle);
+        bundle.putString(key1, edtTxt.getText().toString());
+        getParentFragmentManager().setFragmentResult(key2, bundle);
     }
 }
