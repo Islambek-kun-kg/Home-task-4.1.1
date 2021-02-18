@@ -19,8 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class HomeFragment extends Fragment implements ItemClickListener {
     private RecyclerView recyclerView;
     private NoteAdapter adapter;
-    public static final String CHECK = "Check";
-    public static final String CHECK_KEY = "Check_Key";
+    public static final String CHECK = "Check", CHECK_KEY = "Check_Key";
     private int position;
 
     @Override

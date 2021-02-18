@@ -20,10 +20,7 @@ import com.example.lesson_411.R;
 public class NoteFragment extends Fragment {
     public boolean checkBtn = false;
     private EditText edtTxt;
-    public static final String KEY_FOR_TXT = "Key1";
-    public static final String KEY_FOR_EDT_TXT = "Key2";
-    public static final String KEY_TXT = "K1";
-    public static final String KEY_EDT_TXT = "K2";
+    public static final String KEY_FOR_TXT = "Key1", KEY_FOR_EDT_TXT = "Key2", KEY_TXT = "K1", KEY_EDT_TXT = "K2";
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup c, Bundle s) {
