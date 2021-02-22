@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesson_411.R;
-import com.example.lesson_411.ui.ItemClickListener;
+import com.example.lesson_411.ui.interfaces.ItemClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment implements ItemClickListener {
@@ -46,16 +46,14 @@ public class HomeFragment extends Fragment implements ItemClickListener {
                 getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        String text = result.getString(NoteFragment.KEY_TXT);
-                        adapter.addItem(text);
+                        adapter.addItem(result.getString(NoteFragment.KEY_TXT));
                     }
                 });
         getParentFragmentManager().setFragmentResultListener(NoteFragment.KEY_FOR_EDT_TXT,
                 getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                        String txt = result.getString(NoteFragment.KEY_EDT_TXT);
-                        adapter.getList().set(position, txt);
+                        adapter.getList().set(position, result.getString(NoteFragment.KEY_EDT_TXT));
                         adapter.notifyItemChanged(position);
                     }
                 });

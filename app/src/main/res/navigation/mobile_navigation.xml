@@ -29,4 +29,9 @@
         android:name="com.example.lesson_411.ui.home.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.lesson_411.ui.onBoard.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
 </navigation>

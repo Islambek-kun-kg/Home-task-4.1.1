@@ -2,6 +2,7 @@ package com.example.lesson_411.ui.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesson_411.R;
-import com.example.lesson_411.ui.ItemClickListener;
+import com.example.lesson_411.ui.interfaces.ItemClickListener;
 
 import java.util.ArrayList;
 
@@ -31,8 +32,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if (position % 2 == 0) holder.itemView.setBackgroundColor(Color.GREEN);
+        else holder.itemView.setBackgroundColor(Color.RED);
         holder.onBind(list.get(position));
-
     }
 
     public ArrayList<String> getList() {
@@ -58,24 +60,21 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             itemView.setOnClickListener(v -> {
                 listener.onItemClick(getAdapterPosition(), list.get(getAdapterPosition()));
             });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(view.getRootView().getContext());
-                    dialog.setTitle("Are you sure about that!?").setPositiveButton("No...", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int witch) {
-                        }
-                    }).setNegativeButton("Yes of course!", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int witch) {
-                            list.remove(getAdapterPosition());
-                            notifyItemRemoved(getAdapterPosition());
-                            notifyItemRangeChanged(getAdapterPosition(), list.size());
-                        }
-                    }).show();
-                    return true;
-                }
+            itemView.setOnLongClickListener(v -> {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getRootView().getContext());
+                dialog.setTitle("Are you sure about that!?").setPositiveButton("No...", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int witch) {
+                    }
+                }).setNegativeButton("Yes of course!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int witch) {
+                        list.remove(getAdapterPosition());
+                        notifyItemRemoved(getAdapterPosition());
+                        notifyItemRangeChanged(getAdapterPosition(), list.size());
+                    }
+                }).show();
+                return true;
             });
         }
 

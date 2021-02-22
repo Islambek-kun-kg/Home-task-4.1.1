@@ -8,4 +8,8 @@
     <string name="use_gallery">Use gallery</string>
     <string name="s">fragment_gallery_use</string>
     <string name="title">Title</string>
+    <string name="Title">Title</string>
+    <string name="description">Description</string>
+    <string name="start">Start</string>
+    <string name="skip">Skip</string>
 </resources>
