@@ -1,7 +1,5 @@
 package com.example.lesson_411.ui.home;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesson_411.R;
+import com.example.lesson_411.models.NoteModel;
 import com.example.lesson_411.ui.interfaces.ItemClickListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
-    private ArrayList<String> list;
+    private ArrayList<NoteModel> list;
     private ItemClickListener listener;
 
     public NoteAdapter() {
@@ -27,7 +27,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_note, parent, false), listener);
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_note, parent, false));
     }
 
     @Override
@@ -37,8 +37,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.onBind(list.get(position));
     }
 
-    public ArrayList<String> getList() {
-        return list;
+    public void getList(int position, NoteModel noteModel) {
+        list.set(position, noteModel);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -46,40 +47,48 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return list.size();
     }
 
-    public void addItem(String txt) {
-        list.add(txt);
+    public void addItem(NoteModel noteModel) {
+        list.add(0, noteModel);
+        notifyItemChanged(list.indexOf(0));
+    }
+
+    public void setList(List<NoteModel> list) {
+        this.list.clear();
+        this.list.addAll(list);
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtTittle;
+    public void sortList(List<NoteModel> list) {
+        this.list.clear();
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
 
-        public ViewHolder(@NonNull View itemView, ItemClickListener listener) {
+    public NoteModel getItem(int position) {
+        return list.get(position);
+    }
+
+    public void remove(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView txtTittle, txtTime;
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTittle = itemView.findViewById(R.id.txtTitle);
-            itemView.setOnClickListener(v -> {
-                listener.onItemClick(getAdapterPosition(), list.get(getAdapterPosition()));
-            });
+            txtTime = itemView.findViewById(R.id.txtTimeForHomeFragment);
+            itemView.setOnClickListener(v -> listener.onItemClick(getAdapterPosition()));
             itemView.setOnLongClickListener(v -> {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getRootView().getContext());
-                dialog.setTitle("Are you sure about that!?").setPositiveButton("No...", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int witch) {
-                    }
-                }).setNegativeButton("Yes of course!", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int witch) {
-                        list.remove(getAdapterPosition());
-                        notifyItemRemoved(getAdapterPosition());
-                        notifyItemRangeChanged(getAdapterPosition(), list.size());
-                    }
-                }).show();
+                listener.onLongClick(getAdapterPosition());
                 return true;
             });
         }
 
-        public void onBind(String s) {
-            txtTittle.setText(s);
+        public void onBind(NoteModel noteModel) {
+            txtTittle.setText(noteModel.getTitle());
         }
     }
 

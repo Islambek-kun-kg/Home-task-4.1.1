@@ -12,4 +12,16 @@
     <string name="description">Description</string>
     <string name="start">Start</string>
     <string name="skip">Skip</string>
+    <string name="editingTxtView">Edit</string>
+    <string name="sorting">Sorting</string>
+    <string name="writeName">Введите имя</string>
+    <string name="EditName">Редактирование имени</string>
+    <string name="DescForProfile1">UI/UX Designer | Front End Developer</string>
+    <string name="about_jonathon"><u>About Gogol:)</u></string>
+    <string name="_20_1_1809_12_1821">Родился 20 марта (1 апреля)1809 года в селе Сорочинцы Полтавской губернии в семье помещика.</string>
+    <string name="follow">Follow</string>
+    <string name="appriciation"><u>Appriciation</u></string>
+    <string name="followers"><u>Followers</u></string>
+    <string name="following"><u>Following</u></string>
+    <string name="cont">Продолжить</string>
 </resources>

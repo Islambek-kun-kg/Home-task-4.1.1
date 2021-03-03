@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.lesson_411.Preferences;
 import com.example.lesson_411.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -38,10 +39,12 @@ public class BoardFragment extends Fragment {
         adapter.setListener(new BoardAdapter.onStartClickListener() {
             @Override
             public void onClick() {
+                new Preferences(requireContext()).saveIsShown();
                 Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigateUp();
             }
         });
         btnSkip.setOnClickListener(v1 -> {
+            new Preferences(requireContext()).saveIsShown();
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigateUp();
         });
     }

@@ -21,9 +21,9 @@
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_gallery"
-        android:name="com.example.lesson_411.ui.useGallery.GalleryUseFragment"
+        android:name="com.example.lesson_411.ui.profile.ProfileFragment"
         android:label="@string/s"
-        tools:layout="@layout/fragment_gallery_use" />
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.example.lesson_411.ui.home.NoteFragment"
@@ -34,4 +34,14 @@
         android:name="com.example.lesson_411.ui.onBoard.BoardFragment"
         android:label="fragment_board"
         tools:layout="@layout/fragment_board" />
+    <fragment
+        android:id="@+id/editFragmentForProfileFragment"
+        android:name="com.example.lesson_411.ui.profile.EditProfileFragment"
+        android:label="fragment_edit_for_gallery"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/phoneFragment"
+        android:name="com.example.lesson_411.ui.auth.PhoneFragment"
+        android:label="fragment_phone"
+        tools:layout="@layout/fragment_phone" />
 </navigation>

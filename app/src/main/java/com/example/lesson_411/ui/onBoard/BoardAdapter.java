@@ -12,6 +12,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.lesson_411.R;
 import com.example.lesson_411.ui.home.NoteFragment;
 
@@ -20,8 +21,8 @@ import org.w3c.dom.Text;
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardHolder> {
     private final String[] titles = new String[]{"Fast", "Free", "Powerful"};
     private final String[] description = new String[]{"Скорость", "Свободный", "Полезный"};
-    private final int[] images = new int[]{R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_home_black_24dp, R.drawable.ic_notifications_black_24dp};
+    private final int[] images = new int[]{R.raw.rocket,
+            R.raw.signature, R.raw.pacman_loading};
     private onStartClickListener listener;
 
     public interface onStartClickListener {
@@ -55,12 +56,12 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardHolder>
     public class BoardHolder extends RecyclerView.ViewHolder {
         private TextView txtTitle, descTitle;
         private Button btnStart;
-        private ImageView imageForBoard;
+        private LottieAnimationView lottieView;
 
         public BoardHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txtTitleForBoard);
-            imageForBoard = itemView.findViewById(R.id.imgViewForBoard);
+            lottieView = itemView.findViewById(R.id.lottieView);
             descTitle = itemView.findViewById(R.id.txtDescForBoard);
             btnStart = itemView.findViewById(R.id.btnStartForBoard);
             btnStart.setOnClickListener(v -> {
@@ -69,7 +70,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardHolder>
         }
 
         public void onBind(int position) {
-            imageForBoard.setImageResource(images[position]);
+            lottieView.setAnimation(images[position]);
             txtTitle.setText(titles[position]);
             descTitle.setText(description[position]);
             if (position == 2) btnStart.setVisibility(View.VISIBLE);

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/sky"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.profile.EditProfileFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_txtview1"
+        android:gravity="center"
+        android:text="@string/EditName"
+        android:textColor="#657370"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editNameForProfileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@drawable/my_edittxt1"
+        android:gravity="center"
+        android:hint="@string/writeName"
+        android:textColorHint="@color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnSaveForProfileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/my_button"
+        android:text="@string/Save"
+        android:textColor="@color/white" />
+
+</LinearLayout>
