@@ -2,10 +2,8 @@ package com.example.lesson_411.ui.auth;
 
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -43,29 +41,19 @@ public class PhoneFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         edtPhone = view.findViewById(R.id.editPhoneForPhoneFragment);
         edtCode = view.findViewById(R.id.editCodePhoneFragment);
-        edtCode.setVisibility(View.INVISIBLE);
         btnContinue = view.findViewById(R.id.btnContinueForPhoneFragment);
         btnCheck = view.findViewById(R.id.btnCheckPhoneFragment);
-        btnCheck.setVisibility(View.INVISIBLE);
         btnContinue.setOnClickListener(v -> {
             requestSms();
-            btnContinue.setVisibility(View.INVISIBLE);
+            btnContinue.setVisibility(View.GONE);
             btnCheck.setVisibility(View.VISIBLE);
-            edtPhone.setVisibility(View.INVISIBLE);
+            edtPhone.setVisibility(View.GONE);
             edtCode.setVisibility(View.VISIBLE);
             btnCheck.setOnClickListener(v1 -> {
                 confirm();
             });
         });
         setCallback();
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    // метод при нажатии назад приложение закрывается
-                    @Override
-                    public void handleOnBackPressed() {
-                        requireActivity().finish();
-                    }
-                });
     }
 
     private void confirm() {
@@ -107,7 +95,7 @@ public class PhoneFragment extends Fragment {
     private void requestSms() {
         String phone = edtPhone.getText().toString().trim();
         if (phone.isEmpty()) {
-            edtPhone.setError("Напишите телефон номера!");
+            edtPhone.setError("Напишите номер телефона!");
             edtPhone.requestFocus();
             return;
         }

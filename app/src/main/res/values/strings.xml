@@ -24,4 +24,8 @@
     <string name="followers"><u>Followers</u></string>
     <string name="following"><u>Following</u></string>
     <string name="cont">Продолжить</string>
+    <string name="verify">Подтвердить</string>
+    <string name="enterYourPhone">Введите номер телефона</string>
+    <string name="enterYourCode">Введите код</string>
+    <string name="not_found">Ничего не найдено</string>
 </resources>

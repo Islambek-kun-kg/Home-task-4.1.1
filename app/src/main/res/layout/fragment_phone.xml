@@ -14,7 +14,8 @@
             android:id="@+id/editPhoneForPhoneFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:hint="@string/enterYourPhone"
+            android:inputType="phone"
             tools:ignore="TextFields" />
 
         <Button
@@ -28,7 +29,9 @@
             android:id="@+id/editCodePhoneFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/enterYourCode"
             android:inputType="number"
+            android:visibility="gone"
             tools:ignore="TextFields" />
 
         <Button
@@ -36,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:text="@string/cont" />
+            android:text="@string/verify"
+            android:visibility="gone" />
     </FrameLayout>
 </LinearLayout>

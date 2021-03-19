@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Entity
 public class NoteModel implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    private long noteId;
     private String title;
     private String createdAt;
 
@@ -19,12 +19,12 @@ public class NoteModel implements Serializable {
         this.title = title;
     }
 
-    public long getId() {
-        return id;
+    public long getNoteId() {
+        return noteId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setNoteId(long noteId) {
+        this.noteId = noteId;
     }
 
     public String getTitle() {
